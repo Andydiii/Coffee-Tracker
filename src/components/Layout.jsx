@@ -16,7 +16,7 @@ export default function Layout({ children }) {
     <footer>
       <p>
         <span className="text-gradient">Caffiend </span>
-        was made by <a target="_blank" href="https://github.com/Andydiii">Andy Liu</a> using the <a href="https://www.fantacss.smoljames.com">FantaCSS</a> design library.
+        was made by <a target="_blank" href="https://github.com/Andydiii">Andy Liu</a> <br /> using the <a href="https://www.fantacss.smoljames.com" target="_blank">FantaCSS</a> design library.
       </p>
     </footer>
   );
