@@ -107,6 +107,7 @@ export const coffeeOptions = [
 const halfLifeHours = 5
 
 // take all coffee consumption history and calculate the current caffeine level.
+// got this from half life formula.
 export function calculateCurrentCaffeineLevel(historyData) {
     const currentTime = Date.now()
     const halfLife = halfLifeHours * 60 * 60 * 1000 // 5 hours in milliseconds
