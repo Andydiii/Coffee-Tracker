@@ -19,7 +19,7 @@ export default function History() {
                     const timeSinceConsume = timeSinceConsumption(utcTime); // e.g. 4 days, 2 hrs ago, 2mins, 3 secs ago.
                     const originalAmount = getCaffeineAmount(coffeeConsumption.name);
                     const remainingAmount = calculateCurrentCaffeineLevel({
-                        [utcTime]: coffeeConsumption // e.g. if utcTime is 2025-04-04, then the object is {2025-04-04: {name: "Latte", amount: 5}}
+                        [utcTime]: coffeeConsumption // [utcTime] is treated as the variable. e.g. if utcTime is 2025-04-04, then the object is {2025-04-04: {name: "Latte", amount: 5}}
                     }); // get current caffeine level of the user after that coffee consumption.
 
                     const summary = `${coffeeConsumption.name} | ${timeSinceConsume} | $${coffeeConsumption.cost} |  ${remainingAmount}mg / ${originalAmount}mg `;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {coffeeOptions} from "../utils/index.js";
 
-export default function CoffeeForm() {
+export default function CoffeeForm( {isAuthenticated} ) {
     const [selectedCoffee, setSelectedCoffee] = useState(null);
     const [showCoffeeTypes, setShowCoffeeTypes] = useState(false);
     const [coffeeCost, setCoffeeCost] = useState(0);
