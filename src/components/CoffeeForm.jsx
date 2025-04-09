@@ -1,7 +1,8 @@
 import { useState } from "react";
-import {coffeeOptions} from "../utils/index.js";
+import { coffeeOptions } from "../utils/index.js";
 
-export default function CoffeeForm( {isAuthenticated} ) {
+export default function CoffeeForm({ isAuthenticated }) {
+    const [showModal, setShowModal] = useState(false);
     const [selectedCoffee, setSelectedCoffee] = useState(null);
     const [showCoffeeTypes, setShowCoffeeTypes] = useState(false);
     const [coffeeCost, setCoffeeCost] = useState(0);
@@ -9,11 +10,21 @@ export default function CoffeeForm( {isAuthenticated} ) {
     const [mins, setMins] = useState(0);
 
     function handleSubmitForm() {
+        if (!isAuthenticated) {
+            setShowModal(true);
+            return;
+        }
+
         console.log(selectedCoffee, coffeeCost, hours, mins);
     }
 
     return (
         <>
+            {showModal && (
+                <Modal handleCloseModal={() => { setShowModal(false); }}>
+                    <Authentication />
+                </Modal>
+            )}
             <div className="section-header">
                 <i className="fa-solid fa-pencil"></i>
                 <h2>Start Tracking Today</h2>
@@ -43,7 +54,7 @@ export default function CoffeeForm( {isAuthenticated} ) {
                 </button>
             </div>
             {/* dropdown box for other option */}
-            { showCoffeeTypes && (
+            {showCoffeeTypes && (
                 <select onChange={(e) => {
                     setSelectedCoffee(e.target.value);
                 }} name="coffee-list" id="coffee-list">
@@ -81,7 +92,7 @@ export default function CoffeeForm( {isAuthenticated} ) {
                                 </option>
                             )
                         })}
-                    </select>                    
+                    </select>
                 </div>
                 <div>
                     {/* mins since last consumption */}
@@ -96,7 +107,7 @@ export default function CoffeeForm( {isAuthenticated} ) {
                                 </option>
                             )
                         })}
-                    </select>                    
+                    </select>
                 </div>
             </div>
 
