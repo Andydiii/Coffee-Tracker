@@ -8,6 +8,7 @@ export default function Authentication({handleCloseModal}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [authenticating, setAuthenticating] = useState(false);
+    const [error, setError] = useState('');
 
     const {signup, login } = useAuth();
 
@@ -19,6 +20,8 @@ export default function Authentication({handleCloseModal}) {
         
         try {
             setAuthenticating(true);
+            setError(null);
+            
             if (isRegistration) {
                 // register a user
                 await signup(email, password);
@@ -29,6 +32,7 @@ export default function Authentication({handleCloseModal}) {
             handleCloseModal();
         } catch (err) {
             console.log(err.message);
+            setError(err.message);
         } finally {
             setAuthenticating(false);
         }
@@ -39,6 +43,11 @@ export default function Authentication({handleCloseModal}) {
         <>
             <h2 className="sign-up-text">{isRegistration ? 'Sign Up' :  'Login' } </h2>
             <p>{isRegistration ? 'Create an account!' : 'Login to your account!' }  </p>
+            {error && (
+                <p>
+                    ❌ {error}
+                </p>
+            )}
             <input value={email} onChange={(e) => {setEmail(e.target.value)}} type="text" placeholder="Email" />
             <input value={password} onChange={(e) => {setPassword(e.target.value)}} type="password" placeholder="Password" />
             <button onClick={handleAuthenticate}><p>{authenticating ? 'Authenticating...' : 'Submit'}</p></button>
