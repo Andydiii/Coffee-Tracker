@@ -9,11 +9,10 @@ import { coffeeConsumptionHistory } from './utils';
 
 function App() {
 
-  const { globalUser, isLoading, globalData} = useAuth();
-  
+  const { globalUser, isLoading} = useAuth();
+  const globalData = coffeeConsumptionHistory;
   // if globalUser is not null, then the user is authenticated
   const isAuthenticated = globalUser;
-
   const isData = globalData && !!Object.keys(globalData || {}).length
 
   const authenticatedContent = (
@@ -27,10 +26,10 @@ function App() {
     <Layout>
       <Hero />
       <CoffeeForm isAuthenticated={isAuthenticated} /> 
-      {(isAuthenticated && isLoading) && (
+      {( isAuthenticated && isLoading) && (
         <p>Loading data...</p>
       )}
-      {(isAuthenticated && isData) && authenticatedContent }
+      {(isAuthenticated && isData) && (authenticatedContent) }
     </Layout>
   ) 
 }
