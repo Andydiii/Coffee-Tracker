@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 import { useAuth } from './context/AuthContext';
 import { coffeeConsumptionHistory } from './utils';
 
-function App() {
+function App() { 
 
   const { globalUser, isLoading} = useAuth();
   const globalData = coffeeConsumptionHistory;
